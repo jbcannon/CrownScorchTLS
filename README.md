@@ -6,9 +6,9 @@ Lidar scans acquired with a RIEGL vz400i, following methods in Cannon et al.
 
 The core functionality is to automatically
 
-(1) Isolate crowns of individual trees by removing tree boles from `LAS` objects using `TreeLS::stemPoints`
-(2) Generates histograms of relative reflectance to generate predictor variables for model prediction.
-(3) Applys a `randomForest` model from Cannon et al. 2025 to estimate crown scorch
+1. Isolate crowns of individual trees by removing tree boles from `LAS` objects using `TreeLS::stemPoints`
+2. Generates histograms of relative reflectance to generate predictor variables for model prediction.
+3. Applys a `randomForest` model from Cannon et al. 2025 to estimate crown scorch
 
 
 <img src="img/methods-outline.jpg" width="500">
