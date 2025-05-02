@@ -11,7 +11,7 @@ The core functionality is to automatically
 (3) Applys a `randomForest` model from Cannon et al. 2025 to estimate crown scorch
 
 
-<img src="img/methods-outline.jpg" width="400">
+<img src="img/methods-outline.jpg" width="500">
 Fig. 1. Schematic methodology for estimating canopy scorch volume using terrestrial lidar scans trained on (A) ocular scorch measurements. We (B) manually segmented pre- and post-burn trees for training, (C) isolated crowns, and (D) generated histograms of return intensity. We (E) calculated Δ intensity from changes in pre- and post-burn histograms, and (F) combined these with training data to model canopy scorch using random forests and beta regression. In application, (G) scanned areas can be (H) automatically segmented, (I) crowns isolated and prediction model applied, resulting in (J) individual crown scorch estimates at an operational scale.
 
 ## Install required packages
