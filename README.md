@@ -57,8 +57,8 @@ Generate a histogram based on reflectance intensites to be used in `randomForest
 
 ```
 crown = remove_stem(las)
-histogram = get_histogram(crown)
 crown = add_reflectance(crown) # add reflectance since its missing
+histogram = get_histogram(crown)
 plot(density ~ intensity, data = histogram, xlab='Reflectance (dB)', type='l')
 ```
 <img src="img/intensity_histogram.JPG" width="300">
