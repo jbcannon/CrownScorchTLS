@@ -75,7 +75,7 @@ Model output
 
 ```
 predicted_scorch
-0.03984125
+0.9402951
 ```
 ### Estimate scorch on multiple trees
 
