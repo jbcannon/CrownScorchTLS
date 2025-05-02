@@ -1,0 +1,16 @@
+Package: CrownScorchTLS
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Author: Jeffery B. Cannon
+Maintainer: Jeffery B. Cannon <Jeffery.Cannon@jonesctr.org>
+Description: Package to estimate tree crown scorch from Terrestrial Lidar Scans taken from a RIEGL vz400i. Methods following Cannon et al. 2025.
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.2
+Imports: 
+    lidR,
+    randomForest,
+    tidyr,
+    TreeLS
