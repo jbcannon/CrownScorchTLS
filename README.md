@@ -30,6 +30,12 @@ install.packages('lidR')
 install.packages('randomForest')
 remotes::install_github('tiagodc/TreeLS')
 ```
+Load required packages after installing
+```
+library(lidR)
+library(CrownScorchTLS)
+```
+
 ## Workflow
 
 ### Load individual tree as `LAS`
