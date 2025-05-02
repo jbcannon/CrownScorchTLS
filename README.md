@@ -41,7 +41,7 @@ las_file = system.file('extdata', 'tree_005.laz', package = 'CrownScorchTLS')
 las = readLAS(las_file)
 plot(las, color='Intensity')
 ```
-![Fig. 2. `LAS` representation of Pinus palustris tree D-03-10867 from Cannon et al. 2025, approximately 2 weeks after prescribed burn'](img/tree_005.jpg){width=200px}
+![Fig. 2. `LAS` representation of Pinus palustris tree D-03-10867 from Cannon et al. 2025, approximately 2 weeks after prescribed burn'](img/tree_005.JPG){width=200px}
 
 ### Generate reflectance histogram (optional)
 Generate a histogram based on reflectance intensites to be used in `randomForest` prediction
@@ -52,7 +52,7 @@ histogram = get_histogram(crown)
 crown = add_reflectance(crown) # add reflectance since its missing
 plot(density ~ intensity, data = histogram, xlab='Reflectance (dB)', type='l')
 ```
-![Fig. 3. Histogram of relative reflectance of Pinus palustris crown D-03-10867 from Cannon et al. 2025, approximately 2 weeks after prescribed burn](img/intensity_histogram.jpg){width=300px}
+![Fig. 3. Histogram of relative reflectance of Pinus palustris crown D-03-10867 from Cannon et al. 2025, approximately 2 weeks after prescribed burn](img/intensity_histogram.JPG){width=300px}
 
 ### Predict scorch from `LAS` object
 
@@ -95,7 +95,7 @@ file:	 tree_004.laz 	 scorch:	 0.577
 file:	 tree_005.laz 	 scorch:	 0.94 
 file:	 tree_006.laz 	 scorch:	 0.948
 ```
-![Fig. 4. Histograms of lidar return intensity from six longleaf pines with varying degrees of crown scorch](img/six_histograms.jpg){width=300px}
+![Fig. 4. Histograms of lidar return intensity from six longleaf pines with varying degrees of crown scorch](img/six_histograms.JPG){width=300px}
 
 
 
