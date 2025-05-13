@@ -18,20 +18,20 @@ Fig. 1. Schematic methodology for estimating canopy scorch volume using terrestr
 
 Get the latest released version of `CrownScorchTLS` from github
 
-```
+```r
 install.packages('remotes')
 remotes::install_github('jbcannon/CrownScorchTLS')
 
 ```
 You will also need `lidR` and `randomForest` packages from CRAN, and the `TreeLS` package from github.
 
-```
+```r
 install.packages('lidR')
 install.packages('randomForest')
 remotes::install_github('tiagodc/TreeLS')
 ```
 Load required packages after installing
-```
+```r
 library(lidR)
 library(CrownScorchTLS)
 ```
@@ -44,7 +44,7 @@ Load a `LAS` object representing a post-burn scan of an individual tree.
 The recommended time since burn is 15-20 days. Model predictions are
 based on relative intensity from a RIEGL vz400i terrestrial lidar scanner
 
-```
+```r
 las_file = system.file('extdata', 'tree_005.laz', package = 'CrownScorchTLS')
 las = readLAS(las_file)
 plot(las, color='Intensity')
@@ -55,7 +55,7 @@ Fig. 2. `LAS` representation of Pinus palustris tree D-03-10867 from Cannon et a
 ### Generate reflectance histogram (optional)
 Generate a histogram based on reflectance intensites to be used in `randomForest` prediction
 
-```
+```r
 crown = remove_stem(las)
 crown = add_reflectance(crown) # add reflectance since its missing
 histogram = get_histogram(crown)
@@ -68,7 +68,7 @@ Fig. 3. Histogram of relative reflectance of Pinus palustris crown D-03-10867 fr
 
 Predict scorch from post-burn `LAS` object using `randomForest` model from Cannon et al. 2025
 
-```
+```r
 predict_scorch(las)
 ```
 Model output
@@ -83,7 +83,7 @@ The `CrownScorchTLS` package contains data from six example trees following
 Cannon et al. 2025 (Figure 3). They can be accessed from the `extdata` directory
 in the package
 
-```
+```r
 directory = system.file('extdata', package = 'CrownScorchTLS')
 filenames = list.files(directory, pattern='.laz', full.names=TRUE)
 
