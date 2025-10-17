@@ -1,4 +1,5 @@
 # CrownScorchTLS
+[![DOI](https://zenodo.org/badge/976829724.svg)](https://doi.org/10.5281/zenodo.17380262)
 
 This `R` package contains functions to predict crown scorch from Terrestrial 
 Lidar scans acquired with a RIEGL vz400i, following methods in Cannon et al. 
