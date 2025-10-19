@@ -1,4 +1,4 @@
-# CrownScorchTLS <img src="https://github.com/jbcannon/CrownScorchTLS/blob/main/img/crownscorchtls-hex-logo.jpg" width="150" align="right"/>
+# CrownScorchTLS <img src="https://github.com/jbcannon/CrownScorchTLS/blob/main/img/crownscorchtls-hex-logo.jpg" width="300" align="right"/>
 ![license](https://img.shields.io/badge/Licence-GPL--3-blue.svg) 
 [![DOI](https://zenodo.org/badge/976829724.svg)](https://doi.org/10.5281/zenodo.17380262)
 
