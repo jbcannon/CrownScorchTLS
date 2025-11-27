@@ -15,7 +15,7 @@
 #' las = readLAS(las_file)
 #' las = add_reflectance(las)
 #' colnames(las@data)
-#' @import lidR
+#' @importFrom lidR add_lasattribute
 #' @export
 add_reflectance = function(las) {
   cols = colnames(las@data)
@@ -68,15 +68,18 @@ get_histogram = function(las, breaks = seq(-20,0, by = 0.2)) {
 #' plot(las)
 #' crown_only = remove_stem(las)
 #' plot(crown_only)
-#' @import lidR
-#' @import TreeLS
+#' @importFrom lidR filter_poi
 #' @importFrom stats quantile
 #' @export
 remove_stem = function(las) {
-  las$Z = las$Z - quantile(las$Z,0.001)
-  las = TreeLS::stemPoints(las)
-  las = lidR::filter_poi(las, !Stem)
-  las = lidR::filter_poi(las, Z>1)
+  if(requireNamespace("TreeLS", quietly = TRUE)) {
+    las$Z = las$Z - quantile(las$Z,0.001)
+    las = TreeLS::stemPoints(las)
+    las = lidR::filter_poi(las, !las$Stem)
+    las = lidR::filter_poi(las, las$Z > 1)
+  } else {
+    stop("TreeLS is required for remove_stem(). Install with remotes::install_github('tiagodc/TreeLS')")
+  }
   return(las)
 }
 
@@ -98,7 +101,6 @@ remove_stem = function(las) {
 #' las_file = system.file('extdata', 'tree_005.laz', package = 'CrownScorchTLS')
 #' las = readLAS(las_file)
 #' predict_scorch(las) #using default model from Cannon et al. 2025
-#' @import lidR
 #' @import randomForest
 #' @import tidyr
 #' @importFrom stats predict

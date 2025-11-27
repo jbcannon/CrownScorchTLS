@@ -1,4 +1,4 @@
-# CrownScorchTLS <img src="https://github.com/jbcannon/CrownScorchTLS/blob/main/img/crownscorchtls-hex-logo.jpg" width="300" align="right"/>
+# CrownScorchTLS <img src="https://github.com/jbcannon/CrownScorchTLS/blob/main/inst/img/crownscorchtls-hex-logo.jpg" width="300" align="right"/>
 
 ![license](https://img.shields.io/badge/Licence-GPL--3-blue.svg) [![DOI](https://zenodo.org/badge/976829724.svg)](https://doi.org/10.5281/zenodo.17380262)
 
@@ -6,7 +6,7 @@ This `R` package contains functions to predict crown scorch from Terrestrial Lid
 
 Citation
 
-Cannon, Jeffery B., Nicole E. Zampieri, Andrew W. Whelan, Timothy M. Shearman, Andrew J. Sánchez Meador, and J. Morgan Varner. “Terrestrial Lidar Scanning Provides Efficient Measurements of Fire-Caused Crown Scorch in Longleaf Pine.” **Fire Ecology** 21, no. 1 (2025): 71. https://doi.org/10.1186/s42408-025-00420-0.
+Cannon, Jeffery B., Nicole E. Zampieri, Andrew W. Whelan, Timothy M. Shearman, Andrew J. Sánchez Meador, and J. Morgan Varner. “Terrestrial Lidar Scanning Provides Efficient Measurements of Fire-Caused Crown Scorch in Longleaf Pine.” **Fire Ecology** 21, no. 1 (2025): 71. <https://doi.org/10.1186/s42408-025-00420-0>.
 
 The core functionality is to automatically
 
@@ -14,7 +14,7 @@ The core functionality is to automatically
 2.  Generates histograms of relative reflectance to generate predictor variables for model prediction.
 3.  Applys a `randomForest` model from Cannon et al. 2025 to estimate crown scorch
 
-<img src="img/methods-outline.jpg" width="500"/> Fig. 1. Schematic methodology for estimating canopy scorch volume using terrestrial lidar scans trained on (A) ocular scorch measurements. We (B) manually segmented pre- and post-burn trees for training, (C) isolated crowns, and (D) generated histograms of return intensity. We (E) calculated Δ intensity from changes in pre- and post-burn histograms, and (F) combined these with training data to model canopy scorch using random forests and beta regression. In application, (G) scanned areas can be (H) automatically segmented, (I) crowns isolated and prediction model applied, resulting in (J) individual crown scorch estimates at an operational scale.
+<img src="inst/img/methods-outline.jpg" width="500"/> Fig. 1. Schematic methodology for estimating canopy scorch volume using terrestrial lidar scans trained on (A) ocular scorch measurements. We (B) manually segmented pre- and post-burn trees for training, (C) isolated crowns, and (D) generated histograms of return intensity. We (E) calculated Δ intensity from changes in pre- and post-burn histograms, and (F) combined these with training data to model canopy scorch using random forests and beta regression. In application, (G) scanned areas can be (H) automatically segmented, (I) crowns isolated and prediction model applied, resulting in (J) individual crown scorch estimates at an operational scale.
 
 ## Install required packages
 
@@ -52,7 +52,7 @@ las = readLAS(las_file)
 plot(las, color='Intensity')
 ```
 
-<img src="img/tree_005.JPG" width="200"/> Fig. 2. `LAS` representation of Pinus palustris tree D-03-10867 from Cannon et al. 2025, approximately 2 weeks after prescribed burn
+<img src="inst/img/tree_005.JPG" width="200"/> Fig. 2. `LAS` representation of Pinus palustris tree D-03-10867 from Cannon et al. 2025, approximately 2 weeks after prescribed burn
 
 ### Generate reflectance histogram (optional)
 
@@ -65,7 +65,7 @@ histogram = get_histogram(crown)
 plot(density ~ intensity, data = histogram, xlab='Reflectance (dB)', type='l')
 ```
 
-<img src="img/intensity_histogram.JPG" width="300"/> Fig. 3. Histogram of relative reflectance of Pinus palustris crown D-03-10867 from Cannon et al. 2025, approximately 2 weeks after prescribed burn
+<img src="inst/img/intensity_histogram.JPG" width="300"/> Fig. 3. Histogram of relative reflectance of Pinus palustris crown D-03-10867 from Cannon et al. 2025, approximately 2 weeks after prescribed burn
 
 ### Predict scorch from `LAS` object
 
@@ -110,7 +110,7 @@ file:    tree_005.laz    scorch:     0.94
 file:    tree_006.laz    scorch:     0.948
 ```
 
-<img src="img/six_histograms.JPG" width="300"/> Fig. 4. Histograms of lidar return intensity from six longleaf pines with varying degrees of crown scorch
+<img src="inst/img/six_histograms.JPG" width="300"/> Fig. 4. Histograms of lidar return intensity from six longleaf pines with varying degrees of crown scorch
 
 ## Workflow Part 2: Predict Scorch with a custom prediction model
 
