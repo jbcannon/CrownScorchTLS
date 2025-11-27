@@ -6,9 +6,7 @@ This `R` package contains functions to predict crown scorch from Terrestrial Lid
 
 Citation
 
-```         
-Cannon, Jeffery B., Nicole E. Zampieri, Andrew W. Whelan, Timothy M. Shearman, Andrew J. Sánchez Meador, and J. Morgan Varner. “Terrestrial Lidar Scanning Provides Efficient Measurements of Fire-Caused Crown Scorch in Longleaf Pine.” Fire Ecology 21, no. 1 (2025): 71. https://doi.org/10.1186/s42408-025-00420-0.
-```
+Cannon, Jeffery B., Nicole E. Zampieri, Andrew W. Whelan, Timothy M. Shearman, Andrew J. Sánchez Meador, and J. Morgan Varner. “Terrestrial Lidar Scanning Provides Efficient Measurements of Fire-Caused Crown Scorch in Longleaf Pine.” **Fire Ecology** 21, no. 1 (2025): 71. https://doi.org/10.1186/s42408-025-00420-0.
 
 The core functionality is to automatically
 
