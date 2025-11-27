@@ -2,7 +2,13 @@
 
 ![license](https://img.shields.io/badge/Licence-GPL--3-blue.svg) [![DOI](https://zenodo.org/badge/976829724.svg)](https://doi.org/10.5281/zenodo.17380262)
 
-This `R` package contains functions to predict crown scorch from Terrestrial Lidar scans acquired with a RIEGL vz400i, following methods in Cannon et al. 2025
+This `R` package contains functions to predict crown scorch from Terrestrial Lidar scans acquired with a RIEGL vz400i, following methods in [Cannon et al. 2025](https://doi.org/10.1186/s42408-025-00420-0)
+
+Citation
+
+```         
+Cannon, Jeffery B., Nicole E. Zampieri, Andrew W. Whelan, Timothy M. Shearman, Andrew J. Sánchez Meador, and J. Morgan Varner. “Terrestrial Lidar Scanning Provides Efficient Measurements of Fire-Caused Crown Scorch in Longleaf Pine.” Fire Ecology 21, no. 1 (2025): 71. https://doi.org/10.1186/s42408-025-00420-0.
+```
 
 The core functionality is to automatically
 
@@ -108,7 +114,7 @@ file:    tree_006.laz    scorch:     0.948
 
 <img src="img/six_histograms.JPG" width="300"/> Fig. 4. Histograms of lidar return intensity from six longleaf pines with varying degrees of crown scorch
 
-## Workflow Part 1: Predict Scorch with a custom prediction model
+## Workflow Part 2: Predict Scorch with a custom prediction model
 
 The steps for creating a customized model are similar as above. The steps are to:
 
