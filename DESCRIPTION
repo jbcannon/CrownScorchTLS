@@ -2,15 +2,26 @@ Package: CrownScorchTLS
 Type: Package
 Title: Estimate Crown Scorch from Terrestrial LiDAR Scans
 Version: 0.1.0
-Author: Jeffery Cannon
-Maintainer: Jeffery Cannon <Jeffery.Cannon@jonesctr.org>
-Description: Package to estimate tree crown scorch from Terrestrial Lidar Scans taken from a RIEGL vz400i. Methods following Cannon et al. 2025.
-License: GPL (>= 3)
+Authors@R: 
+  c(
+    person("Jeffery", "Cannon", email = "Jeffery.Cannon@jonesctr.org", role = c("aut","cre")),
+    person("Andrew", "Whelan", role = "ctb")
+  )
+Description: This package estimates tree crown scorch from terrestrial lidar scans collected with a RIEGL vz400i. The methods follow those described in Cannon et al. (2025, Fire Ecology 21:71, doi:10.1186/s42408-025-00420-0).
+License: GPL-3
 Encoding: UTF-8
+URL: https://github.com/jbcannon/CrownScorchTLS
+BugReports: https://github.com/jbcannon/CrownScorchTLS/issues
 LazyData: true
 RoxygenNote: 7.3.2
 Imports: 
     lidR,
     randomForest,
-    tidyr,
-    TreeLS
+    tidyr
+Suggests:
+    knitr,
+    rmarkdown,
+    TreeLS,
+    dplyr,
+    Boruta
+VignetteBuilder: knitr

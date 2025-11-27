@@ -11,6 +11,9 @@ add_reflectance(las)
 segmented tree containing an `Intensity` column representing 16-bit range-
 corrected amplitude from RIEGL vz400i Terrestrial Lidar Scanner}
 }
+\value{
+modified LAS object with Reflectance column
+}
 \description{
 Function to provide relative Reflectance for RIEGL vz400i. Lidar prediction
 of crown scorch is based on relative range-corrected

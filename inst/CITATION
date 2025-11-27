@@ -1,0 +1,20 @@
+citHeader("To cite the CrownScorchTLS package in publications, please use:")
+
+citEntry(
+  entry = "Article",
+  title = "Terrestrial lidar scanning provides efficient measurements of fire-caused crown scorch
+in longleaf pine",
+  author = c(
+    person("Jeffery B.", "Cannon"),
+    person("Nicole E.", "Zampieri"),
+    person("Andrew W.", "Whelan"),
+    person("Timothy M.", "Shearman"),
+    person("Andrew J.", "Andrew J. Sánchez Meador"),
+    person("J. Morgan", "varner")
+  ),
+  journal = "Fire Ecology",
+  year = 2025,
+  volume = 21,
+  pages = "71",
+  doi = "10.1186/s42408-025-00420-0"
+)
