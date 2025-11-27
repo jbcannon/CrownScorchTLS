@@ -16,6 +16,9 @@ from Cannon et al. 2025 is used. But custom model may be generated.}
 
 \item{plot}{Boolean indicating whether reflectance histogram should be plotted}
 }
+\value{
+predicted scorch as numeric vector
+}
 \description{
 This function follows methods in Cannon et al. 2025 to predict crown scorch
 of a `LAS` object representing an individual tree collected using a RIEGL vz400i

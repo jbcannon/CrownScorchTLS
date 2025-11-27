@@ -15,6 +15,7 @@
 #' las = readLAS(las_file)
 #' las = add_reflectance(las)
 #' colnames(las@data)
+#' @return modified LAS object with Reflectance column
 #' @importFrom lidR add_lasattribute
 #' @export
 add_reflectance = function(las) {
@@ -25,7 +26,7 @@ add_reflectance = function(las) {
   return(las)
 }
 
-#' Generate histogram of Reflectance for prediction wiht Random Forests
+#' Generate histogram of Reflectance for prediction with random forests
 #'
 #' Generates a histogram of Reflectance intensities for prediction with
 #' Random Forests. Histogram breaks can be defined.
@@ -42,6 +43,7 @@ add_reflectance = function(las) {
 #' histogram = get_histogram(las)
 #' plot(density ~ intensity, data=histogram, xlab='Reflectance (dB)', type='l')
 #' @importFrom graphics hist
+#' @return data.frame with columns intensity and density
 #' @export
 get_histogram = function(las, breaks = seq(-20,0, by = 0.2)) {
   if(is.null(las$Reflectance)) stop('las does not contain Reflectance column. Use add_reflectance() function to calculate it from Intensity')
@@ -68,6 +70,7 @@ get_histogram = function(las, breaks = seq(-20,0, by = 0.2)) {
 #' plot(las)
 #' crown_only = remove_stem(las)
 #' plot(crown_only)
+#' @return LAS object with stem removed
 #' @importFrom lidR filter_poi
 #' @importFrom stats quantile
 #' @export
@@ -101,8 +104,9 @@ remove_stem = function(las) {
 #' las_file = system.file('extdata', 'tree_005.laz', package = 'CrownScorchTLS')
 #' las = readLAS(las_file)
 #' predict_scorch(las) #using default model from Cannon et al. 2025
+#' @return predicted scorch as numeric vector
 #' @import randomForest
-#' @import tidyr
+#' @importFrom tidyr pivot_wider
 #' @importFrom stats predict
 #' @importFrom utils installed.packages
 #' @export

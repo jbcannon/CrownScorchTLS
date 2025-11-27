@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions.R
 \name{get_histogram}
 \alias{get_histogram}
-\title{Generate histogram of Reflectance for prediction wiht Random Forests}
+\title{Generate histogram of Reflectance for prediction with random forests}
 \usage{
 get_histogram(las, breaks = seq(-20, 0, by = 0.2))
 }
@@ -12,6 +12,9 @@ segmented tree containing a `Reflectance` column representing relative
 reflectance from from RIEGL vz400i Terrestrial Lidar Scanner. See `add_reflectance()`}
 
 \item{breaks}{sequence of breaks for histograms, default from Cannon et al. 2025.}
+}
+\value{
+data.frame with columns intensity and density
 }
 \description{
 Generates a histogram of Reflectance intensities for prediction with

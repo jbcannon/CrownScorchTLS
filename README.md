@@ -87,16 +87,65 @@ predicted_scorch
 The `CrownScorchTLS` package contains data from six example trees following Cannon et al. 2025 (Figure 3). They can be accessed from the `extdata` directory in the package
 
 ``` r
-directory = system.file('extdata', package = 'CrownScorchTLS')
-filenames = list.files(directory, pattern='.laz', full.names=TRUE)
+# CrownScorchTLS Demo Workflow -----------------------------------------------
+# This example demonstrates how to run predict_scorch() on TLS data.
+# By default, it uses example .laz files hosted on GitHub.
+# Users can easily switch to their own local files or URLs (see below).
 
-# Run loop to plot all histograms
+library(CrownScorchTLS)
+library(lidR)
+
+# -------------------------------------------------------------------------
+# OPTION A: Use external demo data hosted on GitHub
+# -------------------------------------------------------------------------
+filenames <- c(
+  "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/M-04-15549_post.laz",
+  "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/L-05-14669_post.laz",
+  "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/E-08-9269_post.laz",
+  "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/B-04-4286_post.laz",
+  "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/D-03-10867_post.laz",
+  "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/C-04-11029_post.laz"
+)
+
+# -------------------------------------------------------------------------
+# OPTION B: Use YOUR OWN TLS files instead of demo data
+#
+# For local files:
+# directory <- "C:/path/to/my/postfire_tls/"
+# filenames <- list.files(directory, pattern="\\.laz$|\\.las$", full.names=TRUE)
+#
+# For your own remote URLs:
+# filenames <- c(
+#   "https://myserver.org/data/tree1.laz",
+#   "https://myserver.org/data/tree2.laz"
+# )
+# -------------------------------------------------------------------------
+
+# Run loop to compute scorch and plot histograms ----------------------------
 par(mfrow = c(3,2), mar = c(4,4,1,1))
-for(f in filenames) {
-  las = readLAS(f)
-  scorch = suppressMessages(predict_scorch(las, plot=TRUE))
-  cat('file:\t', basename(f), '\t', 'scorch:\t', round(scorch,3),'\n')
+
+for (f in filenames) {
+
+  # Use this for remote download of urls
+  ext <- tools::file_ext(f) #detect file extension (laz|las)
+  ext <- paste0(".", ext)
+  tf = tempfile(fileext = ext) #create local fiel
+  download.file(f, tf, mode = "wb")
+  las <- readLAS(tf)
+  
+  # Use this for using local files (more common)
+  # las <- readLAS(f)
+
+  # Compute scorch, plot histogram
+  scorch <- suppressMessages(predict_scorch(las, plot = TRUE))
+
+  # Print results
+  cat(
+    "file:\t", basename(f), 
+    "\tscorch:\t", round(scorch, 3), "\n"
+  )
 }
+
 ```
 
 Model output:
@@ -125,15 +174,38 @@ The steps for creating a customized model are similar as above. The steps are to
 
 ```{r}
 # ###################
-## 1. point to a directory of segmented trees
-directory = 'C:/data/mytrees/'
-filenames = list.files(pattern = '.laz$|.las$', full.names = TRUE) #files ending in .laz/.las
+# 1. Option A — Use external example data (downloaded .las/.laz files)
 
-# or load working example data
-directory = system.file('extdata', package = 'CrownScorchTLS')
-filenames = list.files(directory, pattern='.laz$|.las$', full.names=TRUE)
+urls <- c(
+  "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/M-04-15549_post.laz",
+  "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/L-05-14669_post.laz",
+  "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/E-08-9269_post.laz",
+  "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/B-04-4286_post.laz",
+  "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/D-03-10867_post.laz",
+  "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/C-04-11029_post.laz"
+)
 
+# Download each file to a temporary location
+filenames <- sapply(urls, function(u) {
+  ext <- paste0(".", tools::file_ext(u))
+  tf  <- tempfile(fileext = ext)     # preserves .las/.laz
+  download.file(u, tf, mode = "wb", quiet = TRUE)
+  return(tf)
+})
+
+print("Using downloaded example data:")
 print(filenames)
+
+
+# ###################
+# 1. Option B — User loads their own directory of segmented trees
+# (leave this commented out for the vignette)
+
+# directory = "C:/data/mytrees/"
+# filenames = list.files(directory, pattern = '\\.(las|laz)$', full.names = TRUE)
+# print("Using user-supplied local files:")
+# print(filenames)
+
 ```
 
 ### 2. Compile Histograms

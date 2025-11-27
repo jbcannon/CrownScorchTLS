@@ -10,6 +10,9 @@ remove_stem(las)
 \item{las}{`LAS` object from `lidR` package representing an individually
 segmented tree}
 }
+\value{
+LAS object with stem removed
+}
 \description{
 This function identifies and removes tree boles using the
 `TreeLS` package available at https://github.com/tiagodc/treels
