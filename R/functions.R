@@ -63,6 +63,7 @@ get_histogram = function(las, breaks = seq(-20,0, by = 0.2)) {
 #' @param las `LAS` object from `lidR` package representing an individually
 #' segmented tree
 #' @examples
+#' \dontrun{
 #' library(lidR)
 #' library(CrownScorchTLS)
 #' las_file = system.file('extdata', 'tree_005.laz', package = 'CrownScorchTLS')
@@ -70,6 +71,7 @@ get_histogram = function(las, breaks = seq(-20,0, by = 0.2)) {
 #' plot(las)
 #' crown_only = remove_stem(las)
 #' plot(crown_only)
+#' }
 #' @return LAS object with stem removed
 #' @importFrom lidR filter_poi
 #' @importFrom stats quantile
@@ -99,11 +101,13 @@ remove_stem = function(las) {
 #' from Cannon et al. 2025 is used. But custom model may be generated.
 #' @param plot Boolean indicating whether reflectance histogram should be plotted
 #' @examples
+#' \dontrun{
 #' library(lidR)
 #' library(CrownScorchTLS)
 #' las_file = system.file('extdata', 'tree_005.laz', package = 'CrownScorchTLS')
 #' las = readLAS(las_file)
 #' predict_scorch(las) #using default model from Cannon et al. 2025
+#' }
 #' @return predicted scorch as numeric vector
 #' @import randomForest
 #' @importFrom tidyr pivot_wider

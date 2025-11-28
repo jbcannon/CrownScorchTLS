@@ -18,6 +18,7 @@ This function identifies and removes tree boles using the
 `TreeLS` package available at https://github.com/tiagodc/treels
 }
 \examples{
+\dontrun{
 library(lidR)
 library(CrownScorchTLS)
 las_file = system.file('extdata', 'tree_005.laz', package = 'CrownScorchTLS')
@@ -25,4 +26,5 @@ las = readLAS(las_file)
 plot(las)
 crown_only = remove_stem(las)
 plot(crown_only)
+}
 }

@@ -26,9 +26,11 @@ Terrestrial Lidar system. The function uses the 'relative reflectance' (in decib
 and predicts crown scorch using `randomForests` following Cannon et al. 2025
 }
 \examples{
+\dontrun{
 library(lidR)
 library(CrownScorchTLS)
 las_file = system.file('extdata', 'tree_005.laz', package = 'CrownScorchTLS')
 las = readLAS(las_file)
 predict_scorch(las) #using default model from Cannon et al. 2025
+}
 }
