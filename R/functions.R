@@ -1,3 +1,4 @@
+
 #' Add Reflectance column to LAS if it is missing for RIEGL vz400i
 #'
 #' Function to provide relative Reflectance for RIEGL vz400i. Lidar prediction
