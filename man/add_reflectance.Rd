@@ -24,8 +24,18 @@ correlated to relative intensity which usually ranges from -20 dB to 0 dB
 \examples{
 library(lidR)
 library(CrownScorchTLS)
-las_file = system.file('extdata', 'tree_005.laz', package = 'CrownScorchTLS')
-las = readLAS(las_file)
+
+ #download external data from github repo
+url <- paste0(
+  "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/",
+  "M-04-15549_post.laz")
+ las_file = tempfile(fileext = paste0(".", tools::file_ext(url)))
+ download.file(url, las_file, mode = "wb", quiet = TRUE)
+ las <- readLAS(las_file)
+
+ # or load your own data
+ #las <- readLAS('C:/path/to/your/file.laz')
+
 las = add_reflectance(las)
 colnames(las@data)
 }

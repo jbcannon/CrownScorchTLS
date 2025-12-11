@@ -9,7 +9,7 @@ stemPoints(las, method = stm.hough())
 \arguments{
 \item{las}{\code{\link[lidR:LAS]{LAS}} object.}
 
-\item{method}{stem denoising algorithm. Currently available: \code{\link{stm.hough}}, \code{\link{stm.eigen.knn}} and \code{\link{stm.eigen.voxel}}.}
+\item{method}{Function to classify stems. Default: \code{\link{stm.hough}}.}
 }
 \value{
 \code{\link[lidR:LAS]{LAS}} object.
@@ -26,25 +26,6 @@ of maintaining CRAN compatibility. All modifications are clearly documented.
 \note{
 This function includes code derived from TreeLS::stemPoints
   (GPL-3 license). See source for details.
-}
-\examples{
-### single tree
-file = system.file("extdata", "spruce.laz", package="TreeLS")
-tls = readTLS(file) \%>\%
-  tlsNormalize \%>\%
-  stemPoints(stm.hough(h_base = c(.5,2)))
-plot(tls, color='Stem')
-
-### entire forest plot
-file = system.file("extdata", "pine_plot.laz", package="TreeLS")
-tls = readTLS(file) \%>\%
-  tlsNormalize \%>\%
-  tlsSample
-
-map = treeMap(tls, map.hough())
-tls = treePoints(tls, map, trp.crop(circle=FALSE))
-tls = stemPoints(tls, stm.hough(pixel_size = 0.03))
-tlsPlot(tls)
 }
 \references{
 Carvalho, T. (2017). TreeLS: Tools for Terrestrial LiDAR in R.

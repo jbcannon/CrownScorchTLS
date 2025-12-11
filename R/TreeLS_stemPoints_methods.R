@@ -26,32 +26,13 @@
 #' The code below is copied and adapted from TreeLS::stemPoints for the purpose
 #' of maintaining CRAN compatibility. All modifications are clearly documented.
 #' @param las \code{\link[lidR:LAS]{LAS}} object.
-#' @param method stem denoising algorithm. Currently available: \code{\link{stm.hough}}, \code{\link{stm.eigen.knn}} and \code{\link{stm.eigen.voxel}}.
+#' @param method Function to classify stems. Default: \code{\link{stm.hough}}.
 #' @return \code{\link[lidR:LAS]{LAS}} object.
 #' @references
 #' Carvalho, T. (2017). TreeLS: Tools for Terrestrial LiDAR in R.
 #'   GitHub: https://github.com/tiagodc/TreeLS
 #' @note This function includes code derived from TreeLS::stemPoints
 #'   (GPL-3 license). See source for details.
-#' @examples
-#' ### single tree
-#' file = system.file("extdata", "spruce.laz", package="TreeLS")
-#' tls = readTLS(file) %>%
-#'   tlsNormalize %>%
-#'   stemPoints(stm.hough(h_base = c(.5,2)))
-#' plot(tls, color='Stem')
-#'
-#' ### entire forest plot
-#' file = system.file("extdata", "pine_plot.laz", package="TreeLS")
-#' tls = readTLS(file) %>%
-#'   tlsNormalize %>%
-#'   tlsSample
-#'
-#' map = treeMap(tls, map.hough())
-#' tls = treePoints(tls, map, trp.crop(circle=FALSE))
-#' tls = stemPoints(tls, stm.hough(pixel_size = 0.03))
-#' tlsPlot(tls)
-#' @export
 stemPoints = function(las, method = stm.hough()){
 
   if(!'TreeID' %in% colnames(las@data)){
@@ -77,15 +58,13 @@ stemPoints = function(las, method = stm.hough()){
 #' License: GPL-3
 #' The code below is copied and adapted from TreeLS::stemPoints for the purpose
 #' of maintaining CRAN compatibility. All modifications are clearly documented.
-#' @param las \code{\link[lidR:LAS]{LAS}} object.
-#' @param method stem denoising algorithm. Currently available: \code{\link{stm.hough}}, \code{\link{stm.eigen.knn}} and \code{\link{stm.eigen.voxel}}.
 #' @return \code{\link[lidR:LAS]{LAS}} object.
-#' @template param-h_step
-#' @template param-max-d
-#' @template param-hbase
-#' @template param-pixel-size
-#' @template param-min-density
-#' @template param-min-votes
+#' @param h_step \code{numeric} - height interval to perform point filtering/assignment/classification.
+#' @param max_d \code{numeric} - largest tree diameter expected in the point cloud.
+#' @param h_base \code{numeric} vector of length 2 - tree base height interval to initiate circle search.
+#' @param pixel_size \code{numeric} - pixel side length to discretize the point cloud layers while performing the Hough Transform circle search.
+#' @param min_density \code{numeric} - between 0 and 1 - minimum point density within a pixel evaluated on the Hough Transform - i.e. only \emph{dense} point clousters will undergo circle search.
+#' @param min_votes \code{integer} - Hough Transform parameter - minimum number of circle intersections over a pixel to assign it as a circle center candidate.
 #' @references
 #' Carvalho, T. (2017). TreeLS: Tools for Terrestrial LiDAR in R.
 #'   GitHub: https://github.com/tiagodc/TreeLS
@@ -101,10 +80,26 @@ stemPoints = function(las, method = stm.hough()){
 #' \item \code{Radius}: approximate radius of the point's stem segment estimated by the Hough Transform - always a multiple of the \code{pixel_size}
 #' \item \code{Votes}: votes received by the stem segment's center through the Hough Transform
 #' }#'
-#' @template section-hough-transform
-#' @template reference-olofsson
-#' @template reference-thesis
-#' @export
+#' @section Adapted Hough Transform:
+#'
+#' The Hough Transform circle search algorithm used in
+#' TreeLS applies a constrained circle search on discretized
+#' point cloud layers. Tree-wise, the circle search is
+#' recursive, in which the search for circle parameters
+#' of a stem section is constrained to the
+#' \emph{feature space} of the stem section underneath it.
+#' Initial estimates of the stem's \emph{feature space}
+#' are performed on a \emph{baselise} stem segment - i.e.
+#' a low height interval where a tree's bole is expected
+#' to be clearly visible in the point cloud.
+#' The algorithm is described in detail by Conto et al. (2017).
+#'
+#' This adapted version of the algorithm is very robust against outliers,
+#' but not against forked or leaning stems.
+#' @references
+#' Olofsson, K., Holmgren, J. & Olsson, H., 2014. Tree stem and height measurements using terrestrial laser scanning and the RANSAC algorithm. Remote Sensing, 6(5), pp.4323–4344.
+#' @references
+#' Conto, T. et al., 2017. Performance of stem denoising and stem modelling algorithms on single tree point clouds from terrestrial laser scanning. Computers and Electronics in Agriculture, v. 143, p. 165-176.
 stm.hough = function(h_step=0.5, max_d=0.5, h_base = c(1,2.5), pixel_size=0.025, min_density=0.1, min_votes=3){
 
   if(length(h_base) != 2)

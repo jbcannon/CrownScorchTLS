@@ -25,10 +25,6 @@ stm.hough(
 \item{min_density}{\code{numeric} - between 0 and 1 - minimum point density within a pixel evaluated on the Hough Transform - i.e. only \emph{dense} point clousters will undergo circle search.}
 
 \item{min_votes}{\code{integer} - Hough Transform parameter - minimum number of circle intersections over a pixel to assign it as a circle center candidate.}
-
-\item{las}{\code{\link[lidR:LAS]{LAS}} object.}
-
-\item{method}{stem denoising algorithm. Currently available: \code{\link{stm.hough}}, \code{\link{stm.eigen.knn}} and \code{\link{stm.eigen.voxel}}.}
 }
 \value{
 \code{\link[lidR:LAS]{LAS}} object.
@@ -62,18 +58,18 @@ Meaninful new fields in the output:
 
 
 The Hough Transform circle search algorithm used in
-TreeLS applies a constrained circle search on discretized 
-point cloud layers. Tree-wise, the circle search is  
-recursive, in which the search for circle parameters 
-of a stem section is constrained to the 
+TreeLS applies a constrained circle search on discretized
+point cloud layers. Tree-wise, the circle search is
+recursive, in which the search for circle parameters
+of a stem section is constrained to the
 \emph{feature space} of the stem section underneath it.
-Initial estimates of the stem's \emph{feature space} 
+Initial estimates of the stem's \emph{feature space}
 are performed on a \emph{baselise} stem segment - i.e.
-a low height interval where a tree's bole is expected  
+a low height interval where a tree's bole is expected
 to be clearly visible in the point cloud.
 The algorithm is described in detail by Conto et al. (2017).
 
-This adapted version of the algorithm is very robust against outliers, 
+This adapted version of the algorithm is very robust against outliers,
 but not against forked or leaning stems.
 }
 

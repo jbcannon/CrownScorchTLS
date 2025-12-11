@@ -15,16 +15,24 @@ LAS object with stem removed
 }
 \description{
 This function identifies and removes tree boles using the
-`TreeLS` package available at https://github.com/tiagodc/treels
+`TreeLS` package available at \url{https://github.com/tiagodc/TreeLS}
 }
 \examples{
-\dontrun{
 library(lidR)
 library(CrownScorchTLS)
-las_file = system.file('extdata', 'tree_005.laz', package = 'CrownScorchTLS')
-las = readLAS(las_file)
-plot(las)
+
+#'  #download external data from github repo
+url <- paste0(
+  "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/",
+  "M-04-15549_post.laz")
+ las_file = tempfile(fileext = paste0(".", tools::file_ext(url)))
+ download.file(url, las_file, mode = "wb", quiet = TRUE)
+ las <- readLAS(las_file)
+
+ # or load your own data
+ #las <- readLAS('C:/path/to/your/file.laz')
+
+#plot(las)
 crown_only = remove_stem(las)
-plot(crown_only)
-}
+#plot(crown_only)
 }

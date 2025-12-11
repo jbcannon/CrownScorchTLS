@@ -19,7 +19,13 @@
 //
 //  ===============================================================================
 
-#include "methods.hpp"
+
+#include <Rcpp.h>
+#include "methods.h"
+#include "utils.h"
+#include "classes.h"
+
+using namespace Rcpp;
 
 // [[Rcpp::export]]
 List houghStemPoints(NumericMatrix& las, double h1 = 1, double h2 = 3, double hstep=0.5, double radius=0.25, double pixel=0.025, double density=0.1, unsigned int votes=3){

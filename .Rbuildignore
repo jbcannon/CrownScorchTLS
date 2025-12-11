@@ -3,3 +3,4 @@
 ^dev/$
 ^doc$
 ^Meta$
+^inst/img

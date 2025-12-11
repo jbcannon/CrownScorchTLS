@@ -25,12 +25,11 @@ install.packages('remotes')
 remotes::install_github('jbcannon/CrownScorchTLS')
 ```
 
-You will also need `lidR` and `randomForest` packages from CRAN, and the `TreeLS` package from github.
+You will also need `lidR` and `randomForest` packages from CRAN
 
 ``` r
 install.packages('lidR')
 install.packages('randomForest')
-remotes::install_github('tiagodc/TreeLS')
 ```
 
 Load required packages after installing
@@ -47,8 +46,15 @@ library(CrownScorchTLS)
 Load a `LAS` object representing a post-burn scan of an individual tree. The recommended time since burn is 15-20 days. Model predictions are based on relative intensity from a RIEGL vz400i terrestrial lidar scanner
 
 ``` r
-las_file = system.file('extdata', 'tree_005.laz', package = 'CrownScorchTLS')
-las = readLAS(las_file)
+# Download external file to a temporary .las/.laz file from data repo
+url = "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/D-03-10867_post.laz"
+las_file <- tempfile(fileext = paste0(".", tools::file_ext(url)))
+download.file(url, las_file, mode = "wb", quiet = TRUE)
+las <- readLAS(las_file)
+
+# Or use your own data
+las <- readLAS("C:/path/to/your/file.laz")
+
 plot(las, color='Intensity')
 ```
 
