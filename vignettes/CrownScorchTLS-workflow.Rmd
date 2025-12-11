@@ -3,6 +3,7 @@ title: "CrownScorchTLS Workflow"
 author: "Jeffery Cannon"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
+Suggests: rmarkdown(>= 2.23)
 vignette: >
   %\VignetteIndexEntry{CrownScorchTLS Workflow}
   %\VignetteEngine{knitr::rmarkdown}
@@ -25,7 +26,10 @@ This vignette demonstrates the main workflows in the `CrownScorchTLS` package fo
 ```{r load-read, fig.width=4, fig.height=4}
 library(CrownScorchTLS)
 library(lidR)
-las_file <- system.file('extdata', 'tree_005.laz', package = 'CrownScorchTLS')
+# Download external file to a temporary .las/.laz file from data repo
+url = "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/D-03-10867_post.laz"
+las_file <- tempfile(fileext = paste0(".", tools::file_ext(url)))
+download.file(url, las_file, mode = "wb", quiet = TRUE)
 las <- readLAS(las_file)
 #plot(las, color = 'Intensity')
 ```

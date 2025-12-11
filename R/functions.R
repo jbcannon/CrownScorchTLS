@@ -1,3 +1,4 @@
+
 #' Add Reflectance column to LAS if it is missing for RIEGL vz400i
 #'
 #' Function to provide relative Reflectance for RIEGL vz400i. Lidar prediction
@@ -11,8 +12,18 @@
 #' @examples
 #' library(lidR)
 #' library(CrownScorchTLS)
-#' las_file = system.file('extdata', 'tree_005.laz', package = 'CrownScorchTLS')
-#' las = readLAS(las_file)
+#'
+#'  #download external data from github repo
+#' url <- paste0(
+#'   "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/",
+#'   "M-04-15549_post.laz")
+#'  las_file = tempfile(fileext = paste0(".", tools::file_ext(url)))
+#'  download.file(url, las_file, mode = "wb", quiet = TRUE)
+#'  las <- readLAS(las_file)
+#'
+#'  # or load your own data
+#'  #las <- readLAS('C:/path/to/your/file.laz')
+#'
 #' las = add_reflectance(las)
 #' colnames(las@data)
 #' @return modified LAS object with Reflectance column
@@ -37,8 +48,18 @@ add_reflectance = function(las) {
 #' @examples
 #' library(lidR)
 #' library(CrownScorchTLS)
-#' las_file = system.file('extdata', 'tree_005.laz', package = 'CrownScorchTLS')
-#' las = readLAS(las_file)
+
+#'  #download external data from github repo
+#' url <- paste0(
+#'   "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/",
+#'   "M-04-15549_post.laz")
+#'  las_file = tempfile(fileext = paste0(".", tools::file_ext(url)))
+#'  download.file(url, las_file, mode = "wb", quiet = TRUE)
+#'  las <- readLAS(las_file)
+#'
+#'  # or load your own data
+#'  #las <- readLAS('C:/path/to/your/file.laz')
+#'
 #' las = add_reflectance(las)
 #' histogram = get_histogram(las)
 #' plot(density ~ intensity, data=histogram, xlab='Reflectance (dB)', type='l')
@@ -59,33 +80,37 @@ get_histogram = function(las, breaks = seq(-20,0, by = 0.2)) {
 #' Remove tree bole from `LAS`
 #'
 #' This function identifies and removes tree boles using the
-#' `TreeLS` package available at https://github.com/tiagodc/treels
+#' `TreeLS` package available at \url{https://github.com/tiagodc/TreeLS}
 #' @param las `LAS` object from `lidR` package representing an individually
 #' segmented tree
 #' @examples
-#' \dontrun{
 #' library(lidR)
 #' library(CrownScorchTLS)
-#' las_file = system.file('extdata', 'tree_005.laz', package = 'CrownScorchTLS')
-#' las = readLAS(las_file)
-#' plot(las)
+#'
+#' #'  #download external data from github repo
+#' url <- paste0(
+#'   "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/",
+#'   "M-04-15549_post.laz")
+#'  las_file = tempfile(fileext = paste0(".", tools::file_ext(url)))
+#'  download.file(url, las_file, mode = "wb", quiet = TRUE)
+#'  las <- readLAS(las_file)
+#'
+#'  # or load your own data
+#'  #las <- readLAS('C:/path/to/your/file.laz')
+#'
+#' #plot(las)
 #' crown_only = remove_stem(las)
-#' plot(crown_only)
-#' }
+#' #plot(crown_only)
 #' @return LAS object with stem removed
 #' @importFrom lidR filter_poi
 #' @importFrom stats quantile
 #' @export
 remove_stem = function(las) {
-  if(requireNamespace("TreeLS", quietly = TRUE)) {
     las$Z = las$Z - quantile(las$Z,0.001)
-    las = TreeLS::stemPoints(las)
+    las = stemPoints(las)
     las = lidR::filter_poi(las, !las$Stem)
     las = lidR::filter_poi(las, las$Z > 1)
-  } else {
-    stop("TreeLS is required for remove_stem(). Install with remotes::install_github('tiagodc/TreeLS')")
-  }
-  return(las)
+    return(las)
 }
 
 #' Predict canopy scorch from `LAS` tree object following Cannon et al. 2025
@@ -101,13 +126,21 @@ remove_stem = function(las) {
 #' from Cannon et al. 2025 is used. But custom model may be generated.
 #' @param plot Boolean indicating whether reflectance histogram should be plotted
 #' @examples
-#' \dontrun{
 #' library(lidR)
 #' library(CrownScorchTLS)
-#' las_file = system.file('extdata', 'tree_005.laz', package = 'CrownScorchTLS')
-#' las = readLAS(las_file)
+#'
+#' #download external data from github repo
+#' url <- paste0(
+#'   "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/",
+#'   "M-04-15549_post.laz")
+#' las_file = tempfile(fileext = paste0(".", tools::file_ext(url)))
+#' download.file(url, las_file, mode = "wb", quiet = TRUE)
+#' las <- readLAS(las_file)
+#'
+#' # or load your own data
+#' #las <- readLAS('C:/path/to/your/file.laz')
+#'
 #' predict_scorch(las) #using default model from Cannon et al. 2025
-#' }
 #' @return predicted scorch as numeric vector
 #' @import randomForest
 #' @importFrom tidyr pivot_wider
@@ -133,7 +166,7 @@ predict_scorch = function(las, model = NULL, plot=FALSE) {
     model = readRDS(model_file)
   }
 
-  message('removing stem using TreeLS::stemPoints()\n')
+  message('removing stem using stemPoints()\n')
   las = remove_stem(las)
 
   # Ensure Reflectance column exists, add if not
