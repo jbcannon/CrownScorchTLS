@@ -1,7 +1,6 @@
 # CrownScorchTLS <img src="https://github.com/jbcannon/CrownScorchTLS/blob/main/inst/img/crownscorchtls-hex-logo.jpg" width="300" align="right"/>
 
 [![CRAN status](https://www.r-pkg.org/badges/version/CrownScorchTLS)](https://CRAN.R-project.org/package=CrownScorchTLS)
-[![CRAN downloads](https://cranlogs.r-pkg.org/badges/last-month/CrownScorchTLS)](https://CRAN.R-project.org/package=CrownScorchTLS)
 ![license](https://img.shields.io/badge/Licence-GPL--3-blue.svg)
 [![DOI](https://zenodo.org/badge/976829724.svg)](https://doi.org/10.5281/zenodo.17380262)
 
