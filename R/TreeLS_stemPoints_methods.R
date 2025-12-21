@@ -31,6 +31,7 @@
 #' @references
 #' Carvalho, T. (2017). TreeLS: Tools for Terrestrial LiDAR in R.
 #'   GitHub: https://github.com/tiagodc/TreeLS
+#' @export
 #' @note This function includes code derived from TreeLS::stemPoints
 #'   (GPL-3 license). See source for details.
 stemPoints = function(las, method = stm.hough()){
