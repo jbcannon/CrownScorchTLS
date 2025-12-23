@@ -15,6 +15,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 #remotes::install.packages('tiagodc/TreeLS')
 ```
+
 # Introduction
 
 This vignette demonstrates the main workflows in the `CrownScorchTLS` package for estimating crown scorch from terrestrial lidar scans collected with a RIEGL vz400i, following [Cannon et al. 2025](https://doi.org/10.1186/s42408-025-00420-0).
@@ -68,7 +69,7 @@ for(f in filenames) {
 
 The steps for creating a customized model are similar: segment trees, generate histograms, train a custom random forest model, and predict scorch on new objects.
 
-You can find a detailed example at [https://github.com/jbcannon/CrownScorchTLS](https://github.com/jbcannon/CrownScorchTLS)
+You can find a detailed example at <https://github.com/jbcannon/CrownScorchTLS>
 
 ```{r custom-model, fig.width=4, fig.height=4, eval=FALSE}
 ## ================================

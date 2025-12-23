@@ -1,7 +1,7 @@
 Package: CrownScorchTLS
 Type: Package
 Title: Estimate Crown Scorch from Terrestrial LiDAR Scans
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
   c(
     person("Jeffery", "Cannon", email = "Jeffery.Cannon@jonesctr.org", role = c("aut","cre")),

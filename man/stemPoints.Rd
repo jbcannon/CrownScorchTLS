@@ -26,6 +26,24 @@ of maintaining CRAN compatibility. All modifications are clearly documented.
 \note{
 This function includes code derived from TreeLS::stemPoints
   (GPL-3 license). See source for details.
+  #' @examples
+library(lidR)
+library(CrownScorchTLS)
+
+#download external data from github repo
+url <- paste0(
+  "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/",
+  "M-04-15549_post.laz")
+ las_file = tempfile(fileext = paste0(".", tools::file_ext(url)))
+ download.file(url, las_file, mode = "wb", quiet = TRUE)
+ las <- readLAS(las_file)
+
+ # or load your own data
+ #las <- readLAS('C:/path/to/your/file.laz')
+
+ las$Z = las$Z - min(las$Z)  # Normalize las
+ las <- stemPoints(las)  # Classify stem points
+ #plot(las, color='Stem')
 }
 \references{
 Carvalho, T. (2017). TreeLS: Tools for Terrestrial LiDAR in R.
