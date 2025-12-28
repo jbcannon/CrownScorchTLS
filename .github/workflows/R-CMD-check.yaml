@@ -29,6 +29,19 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@v2
 
+       # 🔧 macOS-only: force source installs (avoid missing CRAN binaries)
+      - name: Disable pak binary installs on macOS
+        if: runner.os == 'macOS'
+        run: |
+          echo "PAK_BUILD_BINARY=false" >> $GITHUB_ENV
+
+      # 🔧 macOS-only: system libraries needed by wk / sf / friends
+      - name: Install macOS system dependencies
+        if: runner.os == 'macOS'
+        run: |
+          brew install geos proj sqlite
+
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::rcmdcheck
