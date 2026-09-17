@@ -87,7 +87,7 @@ get_histogram = function(las, breaks = seq(-20,0, by = 0.2)) {
 #' library(lidR)
 #' library(CrownScorchTLS)
 #'
-#' #'  #download external data from github repo
+#' # download external data from github repo
 #' url <- paste0(
 #'   "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/",
 #'   "M-04-15549_post.laz")

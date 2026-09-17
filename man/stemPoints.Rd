@@ -26,7 +26,8 @@ of maintaining CRAN compatibility. All modifications are clearly documented.
 \note{
 This function includes code derived from TreeLS::stemPoints
   (GPL-3 license). See source for details.
-  #' @examples
+}
+\examples{
 library(lidR)
 library(CrownScorchTLS)
 

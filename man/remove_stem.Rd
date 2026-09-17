@@ -21,7 +21,7 @@ This function identifies and removes tree boles using the
 library(lidR)
 library(CrownScorchTLS)
 
-#'  #download external data from github repo
+# download external data from github repo
 url <- paste0(
   "https://raw.githubusercontent.com/jbcannon/CrownScorchTLS-data/main/data/manual-clip-trees/",
   "M-04-15549_post.laz")

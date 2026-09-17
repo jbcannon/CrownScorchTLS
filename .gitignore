@@ -5,3 +5,8 @@ inst/doc
 /doc/
 /Meta/
 *.tar.gz
+src/*.o
+src/*.so
+src/*.dll
+src/*.rds
+src/symbols.rds
