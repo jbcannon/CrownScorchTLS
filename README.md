@@ -1,10 +1,15 @@
 # CrownScorchTLS <img src="https://github.com/jbcannon/CrownScorchTLS/blob/main/inst/img/crownscorchtls-hex-logo.jpg" width="300" align="right"/>
 
 [![CRAN status](https://www.r-pkg.org/badges/version/CrownScorchTLS)](https://CRAN.R-project.org/package=CrownScorchTLS)
+[![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/CrownScorchTLS)](https://CRAN.R-project.org/package=CrownScorchTLS)
 ![license](https://img.shields.io/badge/Licence-GPL--3-blue.svg)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17380263.svg)](https://doi.org/10.5281/zenodo.17380263)
 
 This `R` package contains functions to predict crown scorch from Terrestrial Lidar scans acquired with a RIEGL vz400i, following methods in [Cannon et al. 2025](https://doi.org/10.1186/s42408-025-00420-0)
+
+<img src="man/figures/downloads.png" width="500"/>
+
+Weekly CRAN downloads (source: [cranlogs](https://cranlogs.r-pkg.org/); regenerate with `dev.R`).
 
 Citation
 

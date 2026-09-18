@@ -6,3 +6,4 @@
 ^inst/img
 .github
 ^CRAN-SUBMISSION$
+^dev\.R$
