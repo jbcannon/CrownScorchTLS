@@ -2,6 +2,7 @@
 
 [![CRAN status](https://www.r-pkg.org/badges/version/CrownScorchTLS)](https://CRAN.R-project.org/package=CrownScorchTLS)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/CrownScorchTLS)](https://CRAN.R-project.org/package=CrownScorchTLS)
+[![R-CMD-check](https://github.com/jbcannon/CrownScorchTLS/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jbcannon/CrownScorchTLS/actions/workflows/R-CMD-check.yaml)
 ![license](https://img.shields.io/badge/Licence-GPL--3-blue.svg)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17380263.svg)](https://doi.org/10.5281/zenodo.17380263)
 
