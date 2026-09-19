@@ -7,10 +7,6 @@
 
 This `R` package contains functions to predict crown scorch from Terrestrial Lidar scans acquired with a RIEGL vz400i, following methods in [Cannon et al. 2025](https://doi.org/10.1186/s42408-025-00420-0)
 
-<img src="man/figures/downloads.png" width="500"/>
-
-Weekly CRAN downloads (source: [cranlogs](https://cranlogs.r-pkg.org/); regenerate with `dev.R`).
-
 Citation
 
 Cannon, Jeffery B., Nicole E. Zampieri, Andrew W. Whelan, Timothy M. Shearman, Andrew J. Sánchez Meador, and J. Morgan Varner. “Terrestrial Lidar Scanning Provides Efficient Measurements of Fire-Caused Crown Scorch in Longleaf Pine.” **Fire Ecology** 21, no. 1 (2025): 71. <https://doi.org/10.1186/s42408-025-00420-0>.
@@ -274,3 +270,11 @@ scorch = predict_scorch(new_las, model = model.RF) #model = NULL will use defaul
 print(scorch)
 
 ```
+
+------------------------------------------------------------------------
+
+## 📈 Downloads
+
+<img src="man/figures/downloads.png" width="650"/>
+
+Updated weekly from [cranlogs](https://cranlogs.r-pkg.org/) by a GitHub Action (`dev.R`).

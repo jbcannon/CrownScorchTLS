@@ -21,7 +21,7 @@ jobs:
       # Kept intentionally minimal: dev.R only needs these three, not the
       # full package (which would pull in lidR and friends).
       - name: Install R dependencies
-        run: Rscript -e 'install.packages(c("jsonlite", "dplyr", "ggplot2"))'
+        run: Rscript -e 'install.packages(c("jsonlite", "dplyr", "ggplot2", "scales"))'
 
       - name: Regenerate downloads figure
         run: Rscript dev.R
@@ -32,8 +32,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add man/figures/downloads.png
           if git diff --cached --quiet; then
-            echo "Figure unchanged"
+            echo "Figure unchanged; nothing to commit."
           else
             git commit -m "Update downloads figure [skip ci]"
+            git pull --rebase
             git push
           fi
