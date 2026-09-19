@@ -35,11 +35,11 @@ jobs:
         run: |
           echo "PAK_BUILD_BINARY=false" >> $GITHUB_ENV
 
-      # 🔧 macOS-only: system libraries needed by wk / sf / friends
+      # 🔧 macOS-only: system libraries needed by wk / sf / rlas / friends
       - name: Install macOS system dependencies
         if: runner.os == 'macOS'
         run: |
-          brew install geos proj sqlite
+          brew install geos proj sqlite gdal
 
 
       - uses: r-lib/actions/setup-r-dependencies@v2
